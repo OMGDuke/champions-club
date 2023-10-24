@@ -69,6 +69,11 @@ const MetaData = styled.div`
     rgba(255, 255, 255, 0) 100%
   );
   padding: 20px 10px 30px;
+  @media (max-width: 680px) {
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
 `
 
 const Avatar = styled(Image)`

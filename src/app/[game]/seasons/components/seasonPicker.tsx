@@ -20,15 +20,17 @@ type Props = {
 export default function SeasonPicker({ seasons }: Props) {
   return (
     <Container>
-      {seasons.map((season) => (
-        <Link
-          href={`#season-${season.season}`}
-          key={`season-link-${season.season}`}
-          shallow
-        >
-          {season.season}
-        </Link>
-      ))}
+      {seasons
+        .filter((season) => season.endDate?.length)
+        .map((season) => (
+          <Link
+            href={`#season-${season.season}`}
+            key={`season-link-${season.season}`}
+            shallow
+          >
+            {season.season}
+          </Link>
+        ))}
       <Link href={`#season-coc`} shallow>
         CoC
       </Link>
@@ -42,6 +44,14 @@ const Container = styled.div`
   grid-auto-columns: 60px;
   margin: 0 auto;
   max-width: max-content;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(6, 60px);
+    grid-auto-flow: unset;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(3, 60px);
+    grid-auto-flow: unset;
+  }
   a {
     padding: 20px;
     text-align: center;

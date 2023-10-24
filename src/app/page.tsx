@@ -51,7 +51,6 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content;
   grid-gap: 60px;
-  padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
   @media (max-width: 700px) {

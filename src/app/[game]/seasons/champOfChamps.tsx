@@ -29,18 +29,22 @@ export default function ChampOfChamps({ wins, players }: Props) {
     <Container id="season-coc">
       <h2>Champions of Champions</h2>
       <h3>Players with more than 10 wins</h3>
-      <Grid>
-        {champs.map((champ) => (
-          <Champion
-            key={`champ-${champ.name}`}
-            name={champ.name}
-            wins={champ.wins}
-            avatar={players[champ.name].avatarUrl}
-            title={players[champ.name].awardTitle}
-            description={players[champ.name].awardDescription}
-          />
-        ))}
-      </Grid>
+      {champs?.length ? (
+        <Grid>
+          {champs.map((champ) => (
+            <Champion
+              key={`champ-${champ.name}`}
+              name={champ.name}
+              wins={champ.wins}
+              avatar={players[champ.name].avatarUrl}
+              title={players[champ.name].awardTitle}
+              description={players[champ.name].awardDescription}
+            />
+          ))}
+        </Grid>
+      ) : (
+        <h4>No Champs? Better get some wins!</h4>
+      )}
     </Container>
   )
 }
@@ -50,8 +54,12 @@ const Container = styled.div`
   max-width: 1000px;
   padding: 0 20px 60px;
   h2,
-  h3 {
+  h3,
+  h4 {
     text-align: center;
+  }
+  h4 {
+    margin: 20px;
   }
 `
 const Grid = styled.div`
@@ -59,4 +67,10 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   padding: 40px 0;
   gap: 40px;
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `

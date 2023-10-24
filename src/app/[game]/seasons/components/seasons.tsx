@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import Season from './season'
 import SeasonPicker from './seasonPicker'
+import { formatDate } from '@/lib/helpers'
 
 type Props = {
   seasons: {
@@ -38,16 +39,25 @@ export default function SeasonsContainer({ seasons, wins, players }: Props) {
   return (
     <>
       <SeasonPicker seasons={seasons} />
-      <Grid>
-        {seasons.map((season) => (
-          <Season
-            key={`season-${season.season}`}
-            season={season}
-            wins={wins[season.season]}
-            players={players}
-          />
-        ))}
-      </Grid>
+      {seasons.filter((season) => season.endDate?.length).length ? (
+        <Grid>
+          {seasons
+            .filter((season) => season.endDate?.length)
+            .map((season) => (
+              <Season
+                key={`season-${season.season}`}
+                season={season}
+                wins={wins[season.season]}
+                players={players}
+              />
+            ))}
+        </Grid>
+      ) : (
+        <h2 style={{ textAlign: 'center', padding: '20px' }}>
+          Season 1 hasnt started yet. Come back later (
+          {formatDate(seasons[0].startDate)})
+        </h2>
+      )}
     </>
   )
 }

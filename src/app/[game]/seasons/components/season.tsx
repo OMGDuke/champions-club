@@ -143,6 +143,12 @@ const Players = styled.div`
   grid-template-columns: repeat(3, 1fr);
   padding-top: 40px;
   grid-gap: 20px;
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 670px) {
+    grid-template-columns: 1fr;
+  }
 `
 const LightBarContainer = styled.div`
   display: relative;
