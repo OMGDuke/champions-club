@@ -1,6 +1,11 @@
 'use client'
 
-import { formatDate, hexToHueRotate } from '@/lib/helpers'
+import { hexToHueRotate } from '@/lib/helpers'
+import {
+  calculateTimeRemaining,
+  formatDate,
+  getDaysBetween
+} from '@/lib/helpers/dates'
 import Image from 'next/image'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
@@ -39,6 +44,18 @@ export default function Season({ season, wins, players }: Props) {
     () => hexToHueRotate(season.accentColour),
     [season.accentColour]
   )
+  const seasonLength = useMemo(
+    () => getDaysBetween(new Date(season.startDate), new Date(season.endDate)),
+    [season.endDate, season.startDate]
+  )
+  const daysRemaining = useMemo(
+    () =>
+      calculateTimeRemaining(
+        new Date(season.startDate),
+        new Date(season.endDate)
+      ),
+    [season.endDate, season.startDate]
+  )
   return (
     <Container id={`season-${season.season}`}>
       <Header>
@@ -63,6 +80,9 @@ export default function Season({ season, wins, players }: Props) {
         <Dates>
           {formatDate(season.startDate)} to {formatDate(season.endDate)}
         </Dates>
+        <DatesLength>
+          {seasonLength} Days Long{daysRemaining ? ` | ${daysRemaining}` : ''}
+        </DatesLength>
         <Description>{season.description}</Description>
       </Header>
       <Players>
@@ -93,11 +113,12 @@ const Header = styled.div`
   grid-gap: 10px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: max-content max-content 1fr;
-  grid-template-areas: 'art name' 'art dates' 'art description';
+  grid-template-rows: max-content max-content max-content 1fr;
+  grid-template-areas: 'art name' 'art dates' 'art dates-length' 'art description';
   @media (max-width: 1060px) {
     grid-template-columns: 1fr;
-    grid-template-areas: 'art' 'name' 'dates' 'description';
+    grid-template-rows: max-content max-content max-content max-content 1fr;
+    grid-template-areas: 'art' 'name' 'dates' 'dates-length' 'description';
   }
 `
 
@@ -129,6 +150,12 @@ const ArtContainer = styled.a<{ $color: string }>`
 
 const Dates = styled.div`
   grid-area: dates;
+  color: #ccc;
+  font-size: 18px;
+`
+
+const DatesLength = styled.div`
+  grid-area: dates-length;
   color: #ccc;
   font-size: 18px;
 `

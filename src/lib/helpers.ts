@@ -56,28 +56,6 @@ export function getPlayersWithAWinInEverySeason(seasonsData: {
   return playersWithTotalWins
 }
 
-export function formatDate(dateString: string) {
-  // Create a Date object from the input string
-  const date = new Date(dateString)
-
-  // Get the day, month, and year components
-  let day: number | string = date.getUTCDate()
-  let month: number | string = date.getUTCMonth() + 1 // Months are zero-based, so add 1
-  const year = date.getUTCFullYear()
-
-  // Pad single-digit day and month with leading zeros if needed
-  if (day < 10) {
-    day = '0' + day
-  }
-  if (month < 10) {
-    month = '0' + month
-  }
-
-  // Create the formatted date string in DD/MM/YYYY format
-  const formattedDate = day + '/' + month + '/' + year
-  return formattedDate
-}
-
 export function getChampionsOfChampions(seasonsData: {
   [seasonNumber: number | string]: {
     players: { name: string; wins: number }[]

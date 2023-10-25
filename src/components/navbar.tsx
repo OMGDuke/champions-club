@@ -6,11 +6,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FaTrophy } from 'react-icons/fa'
+import useScrolledDown from '@/lib/hooks/useScrolledDown'
 
 export default function Navbar() {
+  const scrolled = useScrolledDown(20)
   const pathname = usePathname()
   return (
-    <Nav>
+    <Nav $scrolled={scrolled}>
       <Anchor href="/" $selected={pathname === '/'}>
         <FaTrophy /> <div>Champions Club</div>
       </Anchor>
@@ -22,14 +24,16 @@ export default function Navbar() {
   )
 }
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ $scrolled: boolean }>`
   background: rgba(25, 25, 25, 0.4);
   backdrop-filter: blur(22px);
   display: flex;
   align-items: center;
-  margin: 20px 20px 0;
+  margin: ${({ $scrolled }) => ($scrolled ? '20px 0 0' : '20px 20px 0')};
   z-index: 10;
-  position: relative;
+  position: sticky;
+  top: 0;
+  transition: margin 0.1s;
 `
 
 const Anchor = styled(Link)<{ $selected: boolean }>`

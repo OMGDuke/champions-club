@@ -40,10 +40,16 @@ export default function Loading() {
 }
 
 const Container = styled.div`
-  padding: 180px 20px 60px;
+  padding: 120px 20px 60px;
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
+  @media (max-width: 900px) {
+    padding: 240px 20px 60px;
+  }
+  @media (max-width: 400px) {
+    padding: 360px 20px 60px;
+  }
 `
 
 const Header = styled.div`

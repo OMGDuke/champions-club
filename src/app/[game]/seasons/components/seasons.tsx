@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import Season from './season'
 import SeasonPicker from './seasonPicker'
-import { formatDate } from '@/lib/helpers'
+import { formatDate } from '@/lib/helpers/dates'
 
 type Props = {
   seasons: {
@@ -63,6 +63,6 @@ export default function SeasonsContainer({ seasons, wins, players }: Props) {
 }
 
 const Grid = styled.div`
-  padding: 60px 20px;
+  padding: 0 20px 0;
   display: grid;
 `

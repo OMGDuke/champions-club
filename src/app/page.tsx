@@ -13,9 +13,11 @@ export default function Home() {
   return (
     <Main>
       <Background img="/images/home-bg.jpg" />
-      <div style={{ position: 'relative' }}>
-        <Champ src={champs} alt="The Champions Club" />
-        <h2>Welcome... To the Champions Club</h2>
+      <Content style={{ position: 'relative' }}>
+        <Heading>
+          <Champ src={champs} alt="The Champions Club" />
+          <h2>Welcome... To the Champions Club</h2>
+        </Heading>
         <Grid>
           <BoxArt href="/mw2" $hover="#7ac32c">
             <Image src={mw2Box} alt="Modern Warfare II" />
@@ -28,7 +30,7 @@ export default function Home() {
             </Note>
           </BoxArt>
         </Grid>
-      </div>
+      </Content>
     </Main>
   )
 }
@@ -39,6 +41,12 @@ const Main = styled.main`
   h2 {
     margin: 20px;
   }
+`
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `
 
 const Champ = styled(Image)`
@@ -66,8 +74,10 @@ const BoxArt = styled(Link)<{ $disabled?: boolean; $hover: string }>`
   overflow: hidden;
   position: relative;
   transition: all 0.2s ease-in-out;
+  opacity: 0.7;
   &:hover {
     box-shadow: 0 0 15px ${({ $hover }) => $hover};
+    opacity: 1;
   }
   img {
     display: block;
@@ -87,4 +97,16 @@ const Note = styled.div`
   transform: translate(-50%, 0);
   text-align: center;
   color: var(--);
+`
+
+const Heading = styled.div`
+  width: max-content;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 8px;
+  background: #141a1d;
+  box-shadow: 0 4px 8px #0d1113;
+  h2 {
+    margin: 20px 0 0;
+  }
 `
