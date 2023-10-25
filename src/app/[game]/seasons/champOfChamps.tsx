@@ -50,6 +50,7 @@ export default function ChampOfChamps({ wins, players }: Props) {
 }
 
 const Container = styled.div`
+  scroll-margin-top: 140px;
   margin: 0 auto;
   max-width: 1000px;
   padding: 0 20px 60px;

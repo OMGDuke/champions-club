@@ -107,6 +107,7 @@ const Container = styled.div`
   margin: 0 auto;
   position: relative;
   padding: 60px 0 0;
+  scroll-margin-top: 100px;
 `
 
 const Header = styled.div`
