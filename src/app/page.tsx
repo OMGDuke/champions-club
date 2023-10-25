@@ -16,7 +16,9 @@ export default function Home() {
       <Content style={{ position: 'relative' }}>
         <Heading>
           <Champ src={champs} alt="The Champions Club" />
-          <h2>Welcome... To the Champions Club</h2>
+          <h2>
+            <span>Welcome...</span>&nbsp;<span>To the Champions Club</span>
+          </h2>
         </Heading>
         <Grid>
           <BoxArt href="/mw2" $hover="#7ac32c">
@@ -100,12 +102,13 @@ const Note = styled.div`
 `
 
 const Heading = styled.div`
-  width: max-content;
   margin: 0 auto;
   padding: 40px;
   border-radius: 8px;
   background: #141a1d;
   box-shadow: 0 4px 8px #0d1113;
+  max-width: max-content;
+  width: 100%;
   h2 {
     margin: 20px 0 0;
   }
