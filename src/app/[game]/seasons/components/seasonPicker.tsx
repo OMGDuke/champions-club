@@ -43,8 +43,9 @@ export default function SeasonPicker({ seasons }: Props) {
 const Outer = styled.div`
   position: sticky;
   top: 49px;
-  background: black;
+  background: rgb(10, 10, 10);
   z-index: 10;
+
   @media (max-width: 900px) {
     position: static;
   }
