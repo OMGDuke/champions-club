@@ -67,10 +67,10 @@ export default function Season({ season, wins, players }: Props) {
         >
           <Image
             src={season.artUrl}
-            sizes="100vw"
             height={1080}
             width={1920}
             alt={`Season ${season.season}`}
+            sizes="(max-width: 1060px) 100vw, 486px"
           />
         </ArtContainer>
 
