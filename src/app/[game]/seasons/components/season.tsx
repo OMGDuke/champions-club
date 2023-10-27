@@ -96,7 +96,12 @@ export default function Season({ season, wins, players }: Props) {
           ))}
       </Players>
       <LightBarContainer>
-        <LightBar src={lightBar} $hueRotate={hueRotate} alt="Going Dark" />
+        <LightBar
+          src={lightBar}
+          $hueRotate={hueRotate}
+          alt="Going Dark"
+          sizes="(max-width: 1000px) 100vw, 1000px"
+        />
       </LightBarContainer>
     </Container>
   )

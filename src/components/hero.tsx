@@ -20,8 +20,8 @@ export default function Hero() {
     <Container $img={background}>
       <Background $img={background} />
       <Images>
-        <Image src={logo} alt="Modern Warfare" />
-        <Image src={champ} alt="Champions Club" />
+        <Image src={logo} alt="Modern Warfare" height={130} />
+        <Image src={champ} alt="Champions Club" width={158.47} height={130} />
       </Images>
     </Container>
   )

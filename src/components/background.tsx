@@ -1,25 +1,20 @@
 'use client'
 
+import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  img: string
-  repeat?: boolean
+export default function Background({ img, repeat, alt }) {
+  return <Bg src={img} alt={alt} fill sizes="100vw" quality={100} />
 }
 
-export default function Background({ img, repeat }: Props) {
-  return <Bg $img={img} $repeat={repeat} />
-}
-
-const Bg = styled.div<{ $img: string; $repeat: boolean | undefined }>`
+const Bg = styled(Image)`
   height: 100vh;
-  background-image: url(${({ $img }) => $img});
-  background-size: cover;
-  background-repeat: ${({ $repeat }) => ($repeat ? '' : 'no-')}repeat;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   height: 100vh;
-  position: fixed;
+  /* Overwrite next/image position: absolute */
+  position: fixed !important;
   pointer-events: none;
   height: 100vh;
   width: 100vw;
