@@ -21,15 +21,17 @@ export default function Champion({
 }: Props) {
   return (
     <Container>
-      <AwardWrapper>
-        <Image
-          src={`/awards/${name}.png`}
-          alt={name}
-          height={1024}
-          width={1024}
-          sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 293.33px"
-        />
-      </AwardWrapper>
+      <a href={`/awards/${name}.png`} target="_blank" rel="noopener noreferrer">
+        <AwardWrapper>
+          <Image
+            src={`/awards/${name}.png`}
+            alt={name}
+            height={1024}
+            width={1024}
+            sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 293.33px"
+          />
+        </AwardWrapper>
+      </a>
       <MetaData>
         <div>
           <Avatar src={avatar} alt={name} height={100} width={100} />
@@ -95,4 +97,5 @@ const Description = styled.div`
 
 const Wins = styled.div`
   text-align: center;
+  color: #cccccc;
 `
