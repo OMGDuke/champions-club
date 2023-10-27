@@ -27,6 +27,7 @@ export default function Champion({
           alt={name}
           height={1024}
           width={1024}
+          sizes="(max-width: 500px) 100vw, (max-width: 1000px) 50vw, 293.33px"
         />
       </AwardWrapper>
       <MetaData>
