@@ -4,8 +4,12 @@ import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Background({ img, repeat, alt }) {
-  return <Bg src={img} alt={alt} fill sizes="100vw" quality={100} />
+type Props = {
+  img: string
+}
+
+export default function Background({ img }: Props) {
+  return <Bg src={img} alt="Champions Club" fill sizes="100vw" quality={100} />
 }
 
 const Bg = styled(Image)`

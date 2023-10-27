@@ -30,7 +30,6 @@ export default async function Game({ params: { game } }: Props) {
     <div>
       <Background
         img={game === 'mw2' ? '/gameart/mw2-bg.jpg' : '/gameart/mw3-bg.png'}
-        repeat={game === 'mw3'}
       />
       <div style={{ position: 'relative' }}>
         <Hero></Hero>
