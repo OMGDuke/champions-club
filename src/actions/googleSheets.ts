@@ -1,5 +1,4 @@
-const sheetUrl =
-  'https://script.google.com/macros/s/AKfycbwTtSsdl8Qr5asiSZzY6kON7nnKWzJLgRNMJ6UH7SSG3EpdkPQMqOSN_zDNs_Nwy8QE/exec?path='
+const sheetUrl = `https://script.google.com/macros/s/${process.env.GOOGLE_MACRO_KEY}/exec?path=`
 
 const cacheLife = 3600 // 1 hour
 
