@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { getPlayerData, getSeasonData, getWins } from '@/actions/googleSheets'
+import {
+  getPlayerArt,
+  getPlayerData,
+  getSeasonData,
+  getWins
+} from '@/actions/googleSheets'
 import SeasonsContainer from '@/app/[game]/seasons/components/seasons'
 import ChampOfChamps from './champOfChamps'
 
@@ -9,14 +14,21 @@ type Props = {
 }
 
 export default async function Seasons({ game }: Props) {
-  const [seasons, wins, players] = await Promise.all([
+  const [seasons, wins, players, playerArt] = await Promise.all([
     getSeasonData(game),
     getWins(game),
-    getPlayerData()
+    getPlayerData(),
+    getPlayerArt(game)
   ])
+
   return (
     <>
-      <SeasonsContainer seasons={seasons} wins={wins} players={players} />
+      <SeasonsContainer
+        seasons={seasons}
+        wins={wins}
+        players={players}
+        playerArt={playerArt}
+      />
       <ChampOfChamps wins={wins} players={players} />
     </>
   )

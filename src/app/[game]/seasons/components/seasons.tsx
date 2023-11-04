@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Season from './season'
 import SeasonPicker from './seasonPicker'
 import { formatDate } from '@/lib/helpers/dates'
+import { Player } from '../../../../../types/player'
 
 type Props = {
   seasons: {
@@ -27,15 +28,21 @@ type Props = {
     }
   }
   players: {
+    [playerName: string]: Player
+  }
+  playerArt: {
     [playerName: string]: {
-      avatarUrl: string
-      awardTitle: string
-      awardDescription: string
+      [seasonNumber: string]: string
     }
   }
 }
 
-export default function SeasonsContainer({ seasons, wins, players }: Props) {
+export default function SeasonsContainer({
+  seasons,
+  wins,
+  players,
+  playerArt
+}: Props) {
   return (
     <>
       <SeasonPicker seasons={seasons} />
@@ -49,6 +56,7 @@ export default function SeasonsContainer({ seasons, wins, players }: Props) {
                 season={season}
                 wins={wins[season.season]}
                 players={players}
+                playerArt={playerArt}
               />
             ))}
         </Grid>

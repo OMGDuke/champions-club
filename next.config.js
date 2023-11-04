@@ -9,7 +9,9 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.akamai.steamstatic.com'
-      }
+      },
+      { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
+      { protocol: 'https', hostname: 'cdn.discordapp.com' }
     ]
   }
 }

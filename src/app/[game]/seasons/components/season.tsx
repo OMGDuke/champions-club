@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import Player from './player'
 
 import lightBar from '../../../../../public/images/light-border.png'
+import { Player as PlayerType } from '../../../../../types/player'
 
 type Props = {
   season: {
@@ -31,15 +32,16 @@ type Props = {
     }[]
   }
   players: {
+    [playerName: string]: PlayerType
+  }
+  playerArt: {
     [playerName: string]: {
-      avatarUrl: string
-      awardTitle: string
-      awardDescription: string
+      [seasonNumber: string]: string
     }
   }
 }
 
-export default function Season({ season, wins, players }: Props) {
+export default function Season({ season, wins, players, playerArt }: Props) {
   const hueRotate = useMemo(
     () => hexToHueRotate(season.accentColour),
     [season.accentColour]
@@ -91,7 +93,10 @@ export default function Season({ season, wins, players }: Props) {
           .map((player) => (
             <Player
               key={`season-${season.season}-${player.name}`}
-              player={{ ...player, ...players[player.name] }}
+              name={player.name}
+              wins={player.wins}
+              player={players[player.name]}
+              playerArt={playerArt[player.name][season.season]}
             />
           ))}
       </Players>

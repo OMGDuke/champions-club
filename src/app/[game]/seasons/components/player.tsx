@@ -1,48 +1,50 @@
 import Image from 'next/image'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
+import { Player } from '../../../../../types/player'
 
 type Props = {
-  player: {
-    name: string
-    wins: number
-    avatarUrl: string
-    awardTitle: string
-    awardDescription: string
-  }
+  player: Player
+  name: string
+  wins: number
+  playerArt: string
 }
 
-export default function Player({ player }: Props) {
+export default function Player({ player, name, wins, playerArt }: Props) {
   const medal = useMemo(() => {
-    if (player.wins >= 20) return '#D6AF36'
-    if (player.wins >= 10) return '#A7A7AD'
-    if (player.wins >= 5) return '#A77044'
+    if (wins >= 20) return '#D6AF36'
+    if (wins >= 10) return '#A7A7AD'
+    if (wins >= 5) return '#A77044'
     return null
-  }, [player.wins])
+  }, [wins])
+
   return (
     <Container>
       <Avatar
         $medal={medal}
         src={player.avatarUrl}
-        alt={player.name}
+        alt={name}
         height={100}
         width={100}
       />
-      <Name>{player.name}</Name>
+      <Name>{name}</Name>
       <Wins>
-        {player.wins} Win{player.wins > 1 ? 's' : ''}
+        {wins} Win{wins > 1 ? 's' : ''}
       </Wins>
+      <OperatorContainer>
+        <Image src={playerArt} fill alt={`${name}`} />
+      </OperatorContainer>
     </Container>
   )
 }
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 100px auto;
+  grid-template-columns: 100px auto 100px;
   grid-template-rows: max-content 1fr;
   grid-template-areas:
-    'avatar name'
-    'avatar wins';
+    'avatar name operator'
+    'avatar wins operator';
   grid-gap: 10px 20px;
   background: linear-gradient(
     90deg,
@@ -65,4 +67,11 @@ const Wins = styled.div`
   grid-area: wins;
   font-size: 20px;
   color: #cccccc;
+`
+
+const OperatorContainer = styled.div`
+  position: relative;
+  grid-area: operator;
+  height: 100px;
+  width: 80px;
 `

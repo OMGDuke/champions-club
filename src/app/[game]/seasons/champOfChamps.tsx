@@ -4,6 +4,7 @@ import { getChampionsOfChampions } from '@/lib/helpers'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import Champion from './components/champion'
+import { Player } from '../../../../types/player'
 
 type Props = {
   wins: {
@@ -15,11 +16,7 @@ type Props = {
     }
   }
   players: {
-    [playerName: string]: {
-      avatarUrl: string
-      awardTitle: string
-      awardDescription: string
-    }
+    [playerName: string]: Player
   }
 }
 

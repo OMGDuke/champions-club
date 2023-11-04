@@ -1,3 +1,5 @@
+import { Player } from '../../types/player'
+
 const sheetUrl = `https://script.google.com/macros/s/${process.env.GOOGLE_MACRO_KEY}/exec?path=`
 
 const cacheLife = 3600 // 1 hour
@@ -51,11 +53,7 @@ export async function getSeasonData(game: 'mw2' | 'mw3'): Promise<
 }
 
 export async function getPlayerData(): Promise<{
-  [playerName: string]: {
-    avatarUrl: string
-    awardTitle: string
-    awardDescription: string
-  }
+  [playerName: string]: Player
 }> {
   const googleSheetUrl = `${sheetUrl}players`
   const res = await fetch(googleSheetUrl, {
@@ -63,22 +61,32 @@ export async function getPlayerData(): Promise<{
   })
   const data = await res.json()
   const formatted: {
-    [playerName: string]: {
-      avatarUrl: string
-      awardTitle: string
-      awardDescription: string
-    }
+    [playerName: string]: Player
   } = {}
 
-  data.forEach(
-    (player: {
-      name: string
-      avatarUrl: string
-      awardTitle: string
-      awardDescription: string
-    }) => {
-      formatted[player.name] = { ...player }
-    }
-  )
+  data.forEach((player: Player & { name: string }) => {
+    formatted[player.name] = { ...player }
+  })
+  return formatted
+}
+
+export async function getPlayerArt(game: 'mw2' | 'mw3'): Promise<{
+  [playerName: string]: {
+    [seasonNumber: string]: string
+  }
+}> {
+  const googleSheetUrl = `${sheetUrl}playerArt${game}`
+  const res = await fetch(googleSheetUrl, {
+    next: { revalidate: cacheLife }
+  })
+  const data = await res.json()
+  const formatted: {
+    [playerName: string]: { ['season']: string }
+  } = {}
+
+  data.forEach((player: { ['season']: string; name: string }) => {
+    const { name, ...newPlayer } = player
+    formatted[name] = newPlayer
+  })
   return formatted
 }
