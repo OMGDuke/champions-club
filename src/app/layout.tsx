@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Teko } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 
 import Navbar from '@/components/navbar'
 import StyledComponentsRegistry from '@/lib/registry'
@@ -25,6 +26,7 @@ export default function RootLayout({
           <LayoutClient>
             <Navbar />
             {children}
+            <Analytics />
           </LayoutClient>
         </StyledComponentsRegistry>
       </body>
