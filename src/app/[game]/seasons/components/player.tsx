@@ -32,7 +32,13 @@ export default function Player({ player, name, wins, playerArt }: Props) {
         {wins} Win{wins > 1 ? 's' : ''}
       </Wins>
       <OperatorContainer>
-        <Image src={playerArt} width={80} height={100} alt={`${name}`} />
+        <Image
+          src={playerArt}
+          width={80}
+          height={100}
+          alt={`${name}`}
+          quality={100}
+        />
       </OperatorContainer>
     </Container>
   )
