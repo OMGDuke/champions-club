@@ -32,8 +32,8 @@ export default function SeasonPicker({ seasons }: Props) {
               {season.season}
             </Link>
           ))}
-        <Link href={`#season-coc`} shallow>
-          CoC
+        <Link href={`#season-hof`} shallow>
+          HoF
         </Link>
       </Container>
     </Outer>

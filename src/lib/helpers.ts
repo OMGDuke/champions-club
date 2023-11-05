@@ -56,7 +56,7 @@ export function getPlayersWithAWinInEverySeason(seasonsData: {
   return playersWithTotalWins
 }
 
-export function getChampionsOfChampions(seasonsData: {
+export function getPlayersWith10PlusWins(seasonsData: {
   [seasonNumber: number | string]: {
     players: { name: string; wins: number }[]
   }
@@ -91,41 +91,37 @@ export function getChampionsOfChampions(seasonsData: {
   return aggregatedPlayerData.filter((player) => player.wins >= 10)
 }
 
-export function hexToHueRotate(targetHexColor: string) {
-  const startHexColor = '#494133' // Fixed starting hex color
-  // Convert the starting and target hex colors to RGB values
-  const startColor = hexToRgb(startHexColor)
-  const targetColor = hexToRgb(targetHexColor)
+export function getHallOfFame(seasonsData: {
+  [seasonNumber: number | string]: {
+    players: { name: string; wins: number }[]
+  }
+}): { name: string; wins: number }[] {
+  const playerDataMap: { [playerName: string]: number } = {}
 
-  // Calculate the hue value for both colors
-  const startHue = calculateHue(startColor.r, startColor.g, startColor.b)
-  const targetHue = calculateHue(targetColor.r, targetColor.g, targetColor.b)
+  for (const seasonKey in seasonsData) {
+    const season = seasonsData[seasonKey]
+    const players = season.players
 
-  // Calculate the hue-rotate value to transition from startHue to targetHue
-  const hueRotateValue = (targetHue - startHue + 360) % 360
+    for (const player of players) {
+      const playerName = player.name
+      const wins = player.wins
 
-  return hueRotateValue.toFixed(2)
-}
-
-function hexToRgb(hexColor: string) {
-  const r = parseInt(hexColor.slice(1, 3), 16) / 255
-  const g = parseInt(hexColor.slice(3, 5), 16) / 255
-  const b = parseInt(hexColor.slice(5, 7), 16) / 255
-  return { r, g, b }
-}
-
-function calculateHue(r: number, g: number, b: number) {
-  const max = Math.max(r, g, b)
-  const min = Math.min(r, g, b)
-  let hue = 0
-
-  if (max === r) {
-    hue = (60 * ((g - b) / (max - min)) + 360) % 360
-  } else if (max === g) {
-    hue = (60 * ((b - r) / (max - min)) + 120) % 360
-  } else {
-    hue = (60 * ((r - g) / (max - min)) + 240) % 360
+      if (playerDataMap[playerName] === undefined) {
+        playerDataMap[playerName] = wins
+      } else {
+        playerDataMap[playerName] += wins
+      }
+    }
   }
 
-  return hue
+  const aggregatedPlayerData = []
+
+  for (const playerName in playerDataMap) {
+    aggregatedPlayerData.push({
+      name: playerName,
+      wins: playerDataMap[playerName]
+    })
+  }
+
+  return aggregatedPlayerData
 }

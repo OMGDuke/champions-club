@@ -1,6 +1,6 @@
 'use client'
 
-import { getChampionsOfChampions } from '@/lib/helpers'
+import { getHallOfFame } from '@/lib/helpers'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import Champion from './components/champion'
@@ -21,11 +21,11 @@ type Props = {
 }
 
 export default function ChampOfChamps({ wins, players }: Props) {
-  const champs = useMemo(() => getChampionsOfChampions(wins), [wins])
+  const champs = useMemo(() => getHallOfFame(wins), [wins])
   return (
-    <Container id="season-coc">
-      <h2>Champions of Champions</h2>
-      <h3>Players with more than 10 wins</h3>
+    <Container id="season-hof">
+      <h2>Hall of Fame</h2>
+      <p>Squad members past and present</p>
       {champs?.length ? (
         <Grid>
           {champs.map((champ) => (
@@ -40,7 +40,7 @@ export default function ChampOfChamps({ wins, players }: Props) {
           ))}
         </Grid>
       ) : (
-        <h4>No Champs? Better get some wins!</h4>
+        <h3>No Champs? Better get some wins!</h3>
       )}
     </Container>
   )
@@ -53,10 +53,10 @@ const Container = styled.div`
   padding: 0 20px 60px;
   h2,
   h3,
-  h4 {
+  p {
     text-align: center;
   }
-  h4 {
+  h3 {
     margin: 20px;
   }
 `

@@ -1,6 +1,6 @@
 'use client'
 
-import { hexToHueRotate } from '@/lib/helpers'
+import { hexToHueRotate } from '@/lib/helpers/colours'
 import {
   calculateTimeRemaining,
   formatDate,
