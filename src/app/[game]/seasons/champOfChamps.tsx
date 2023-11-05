@@ -18,30 +18,45 @@ type Props = {
   players: {
     [playerName: string]: Player
   }
+  game: 'mw2' | 'mw3'
 }
 
-export default function ChampOfChamps({ wins, players }: Props) {
-  const champs = useMemo(() => getHallOfFame(wins), [wins])
+export default function ChampOfChamps({ wins, players, game }: Props) {
+  const champs = useMemo(
+    () =>
+      getHallOfFame(wins).filter(
+        (champ) => players[champ.name][`awardTitle${game}`]?.length
+      ),
+    [game, players, wins]
+  )
+
+  if (!champs.length)
+    return (
+      <Container id="season-hof">
+        <h2>Hall of Fame</h2>
+        <h3>Award season hasn&apos;t started yet</h3>
+      </Container>
+    )
+
   return (
     <Container id="season-hof">
       <h2>Hall of Fame</h2>
       <p>Squad members past and present</p>
-      {champs?.length ? (
-        <Grid>
-          {champs.map((champ) => (
+      <Grid>
+        {champs
+          .filter((champ) => players[champ.name][`awardTitle${game}`]?.length)
+          .map((champ) => (
             <Champion
               key={`champ-${champ.name}`}
               name={champ.name}
               wins={champ.wins}
               avatar={players[champ.name].avatarUrl}
-              title={players[champ.name].awardTitle}
-              description={players[champ.name].awardDescription}
+              title={players[champ.name][`awardTitle${game}`]}
+              description={players[champ.name][`awardDescription${game}`]}
+              game={game}
             />
           ))}
-        </Grid>
-      ) : (
-        <h3>No Champs? Better get some wins!</h3>
-      )}
+      </Grid>
     </Container>
   )
 }

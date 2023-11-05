@@ -29,7 +29,7 @@ export default async function Seasons({ game }: Props) {
         players={players}
         playerArt={playerArt}
       />
-      <ChampOfChamps wins={wins} players={players} />
+      <ChampOfChamps wins={wins} players={players} game={game} />
     </>
   )
 }

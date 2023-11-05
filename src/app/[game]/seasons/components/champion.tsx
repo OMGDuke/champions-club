@@ -10,6 +10,7 @@ type Props = {
   title: string
   description: string
   avatar: string
+  game: 'mw2' | 'mw3'
 }
 
 export default function Champion({
@@ -17,14 +18,19 @@ export default function Champion({
   wins,
   title,
   description,
-  avatar
+  avatar,
+  game
 }: Props) {
   return (
     <Container>
-      <a href={`/awards/${name}.png`} target="_blank" rel="noopener noreferrer">
+      <a
+        href={`/awards${game}/${name}.png`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <AwardWrapper>
           <Image
-            src={`/awards/${name}.png`}
+            src={`/awards${game}/${name}.png`}
             alt={name}
             height={1024}
             width={1024}
