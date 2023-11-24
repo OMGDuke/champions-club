@@ -4,7 +4,7 @@ Welcome... To the Champions Club.
 
 Champions Club tracks wins in Call of Duty: Warzone. Data is managed via Google Sheets
 
-[championsclub.netlify.app](https://championsclub.netlify.app)
+[champsclub.vercel.app](https://champsclub.vercel.app/)
 
 ![Champions Club](./preview.png)
 
