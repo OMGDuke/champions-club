@@ -24,12 +24,8 @@ export default function Home() {
           <BoxArt href="/mw2" $hover="#7ac32c">
             <Image src={mw2Box} alt="Modern Warfare II" />
           </BoxArt>
-          <BoxArt href="/mw3" $disabled $hover="#d60000">
+          <BoxArt href="/mw3" $hover="#d60000">
             <Image src={mw3Box} alt="Modern Warfare III" />
-            <Note>
-              <div>Season 1 Begins</div>
-              <div>05/12/2023</div>
-            </Note>
           </BoxArt>
         </Grid>
       </Content>
@@ -86,19 +82,6 @@ const BoxArt = styled(Link)<{ $disabled?: boolean; $hover: string }>`
     width: 100%;
     height: auto;
   }
-`
-
-const Note = styled.div`
-  position: absolute;
-  z-index: 10;
-  bottom: 10px;
-  background-color: rgb(var(--tile-start-rgb));
-  padding: 10px;
-  border-radius: 8px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  text-align: center;
-  color: var(--);
 `
 
 const Heading = styled.div`

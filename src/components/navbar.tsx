@@ -19,7 +19,9 @@ export default function Navbar() {
       <Anchor href="/mw2" $selected={pathname === '/mw2'}>
         MW2
       </Anchor>
-      <Disabled>MW3</Disabled>
+      <Anchor href="/mw3" $selected={pathname === '/mw3'}>
+        MW3
+      </Anchor>
     </Nav>
   )
 }
@@ -50,12 +52,4 @@ const Anchor = styled(Link)<{ $selected: boolean }>`
   div {
     margin-left: 6px;
   }
-`
-
-const Disabled = styled.div`
-  cursor: not-allowed;
-  color: #bdbcbc;
-  display: flex;
-  font-size: 20px;
-  padding: 10px;
 `
