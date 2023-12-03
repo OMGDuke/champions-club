@@ -43,12 +43,7 @@ export default function Champion({
           <Avatar src={avatar} alt={name} height={100} width={100} />
           <Wins>
             {`${wins} Wins`.split('').map((char, i) => (
-              <span
-                className={wins >= 200 ? 'fire' : ''}
-                key={`${name}-win-${i}`}
-              >
-                {char}
-              </span>
+              <span key={`${name}-win-${i}`}>{char}</span>
             ))}
           </Wins>
         </div>
@@ -111,46 +106,6 @@ const Description = styled.div`
 `
 
 const Wins = styled.div`
-  margin-top: 100px;
   text-align: center;
   color: #cccccc;
-  span.fire {
-    color: #f5f5f5; /* Light text color */
-    text-align: center; /* Center alignment of text */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font */
-    font-size: 80px; /* Text size */
-    /* Multi-layered text-shadow for fire effect */
-    text-shadow:
-      0px -1px 3px #fff,
-      /* Innermost layer - intense heat (white) */ 0px -2px 6px #ff3,
-      /* Second layer - core of flame (yellow) */ 0px -6px 12px #f90,
-      /* Middle layer - body of flame (orange) */ 0px -10px 20px #c33; /* Outermost layer - edges of flame (red) */
-  }
-
-  /* Define the animation named "flicker" */
-  @keyframes flicker {
-    /* Initial state of animation */
-    0%, 
-    /* Final state of animation */
-    100% {
-      text-shadow:
-        0 -1px 3px #fff,
-        /* Innermost layer - intense heat (white) */ 0 -2px 6px #ff3,
-        /* Second layer - core of flame (yellow) */ 0 -6px 12px #f90,
-        /* Middle layer - body of flame (orange) */ 0 -10px 20px #c33; /* Outermost layer - edges of flame (red) */
-    }
-    /* Middle state of animation */
-    50% {
-      text-shadow:
-        0 -2px 6px #fff,
-        /* Innermost layer - intense heat (white) */ 0 -4px 12px #ff3,
-        /* Second layer - core of flame (yellow) */ 0 -8px 16px #f90,
-        /* Middle layer - body of flame (orange) */ 0 -12px 24px #c33; /* Outermost layer - edges of flame (red) */
-    }
-  }
-
-  .fire {
-    /* Apply the "flicker" animation to the .fire class */
-    animation: flicker 2s infinite;
-  }
 `
