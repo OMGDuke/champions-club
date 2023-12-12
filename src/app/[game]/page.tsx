@@ -1,10 +1,12 @@
 import { redirect } from 'next/navigation'
 import React, { Suspense } from 'react'
-import Hero from '@/components/hero'
-import Seasons from '@/app/[game]/seasons/seasons'
-import Background from '@/components/background'
 import { Metadata } from 'next'
-import Loading from './seasons/loading'
+
+import Seasons from '@/app/[game]/seasons/seasons'
+import Loading from '@/app/[game]/seasons/loading'
+
+import Hero from '@/components/hero'
+import Background from '@/components/background'
 
 type Props = {
   params: {
