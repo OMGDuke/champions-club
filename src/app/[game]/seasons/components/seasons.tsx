@@ -46,10 +46,10 @@ export default function SeasonsContainer({
   return (
     <>
       <SeasonPicker seasons={seasons} />
-      {seasons.filter((season) => season.endDate?.length).length ? (
+      {seasons.filter((season) => season.artUrl?.length).length ? (
         <Grid>
           {seasons
-            .filter((season) => season.endDate?.length)
+            .filter((season) => season.artUrl?.length)
             .map((season) => (
               <Season
                 key={`season-${season.season}`}
