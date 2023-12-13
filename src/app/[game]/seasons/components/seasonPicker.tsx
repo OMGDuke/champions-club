@@ -22,7 +22,7 @@ export default function SeasonPicker({ seasons }: Props) {
     <Outer>
       <Container>
         {seasons
-          .filter((season) => season.endDate?.length)
+          .filter((season) => season.artUrl?.length)
           .map((season) => (
             <Link
               href={`#season-${season.season}`}
