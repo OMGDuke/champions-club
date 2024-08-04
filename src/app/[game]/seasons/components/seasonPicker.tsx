@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -24,17 +23,14 @@ export default function SeasonPicker({ seasons }: Props) {
         {seasons
           .filter((season) => season.artUrl?.length)
           .map((season) => (
-            <Link
+            <a
               href={`#season-${season.season}`}
               key={`season-link-${season.season}`}
-              shallow
             >
               {season.season}
-            </Link>
+            </a>
           ))}
-        <Link href={`#season-hof`} shallow>
-          HoF
-        </Link>
+        <a href={`#season-hof`}>HoF</a>
       </Container>
     </Outer>
   )

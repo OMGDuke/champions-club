@@ -1,31 +1,42 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
-import React, { useMemo } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import styled from 'styled-components'
 
 import champ from '../../public/images/champ-club.png'
 import mw2Logo from '../../public/gameart/mw2-logo.png'
 import mw3Logo from '../../public/gameart/mw3-logo.png'
+import bo6Logo from '../../public/gameart/bo6-logo.png'
+import { Game } from '../../types/games'
 
-export default function Hero() {
-  const pathname = usePathname()
-  const [background, logo] = useMemo(() => {
-    if (pathname === '/mw2') return ['/gameart/mw2-hero.jpg', mw2Logo]
-    return ['/gameart/mw3-hero.jpg', mw3Logo]
-  }, [pathname])
+const logos = {
+  mw2: mw2Logo,
+  mw3: mw3Logo,
+  bo6: bo6Logo
+} as const
+
+interface Properties {
+  game: Game
+}
+
+const Hero: React.FC<Properties> = ({ game }) => {
+  const background = `/gameart/${game}-hero.jpg`
+
+  const logo = logos[game]
 
   return (
     <Container $img={background}>
       <Background $img={background} />
       <Images>
-        <Image src={logo} alt="Modern Warfare" height={130} />
+        <Image src={logo} alt="Call of Duty" height={130} />
         <Image src={champ} alt="Champions Club" width={158.47} height={130} />
       </Images>
     </Container>
   )
 }
+
+export default Hero
 
 const Container = styled.header<{ $img: string }>`
   position: relative;
@@ -64,7 +75,6 @@ const Images = styled.div`
   img {
     position: relative;
     z-index: 10;
-    height: 130px;
     width: auto;
     margin: 0 auto;
   }

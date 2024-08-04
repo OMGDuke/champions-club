@@ -16,11 +16,14 @@ export default function Navbar() {
       <Anchor href="/" $selected={pathname === '/'}>
         <FaTrophy /> <div>Champions Club</div>
       </Anchor>
-      <Anchor href="/mw2" $selected={pathname === '/mw2'}>
-        MW2
+      <Anchor href="/bo6" $selected={pathname === '/bo6'}>
+        BO6
       </Anchor>
       <Anchor href="/mw3" $selected={pathname === '/mw3'}>
         MW3
+      </Anchor>
+      <Anchor href="/mw2" $selected={pathname === '/mw2'}>
+        MW2
       </Anchor>
     </Nav>
   )

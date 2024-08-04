@@ -1,18 +1,15 @@
+import { Game } from '../../types/games'
 import { Player } from '../../types/player'
 
 const sheetUrl = `https://script.google.com/macros/s/${process.env.GOOGLE_MACRO_KEY}/exec?path=`
 
-const cacheLife = 3600 // 1 hour
-
-export async function getWins(game: 'mw2' | 'mw3'): Promise<{
+export async function getWins(game: Game): Promise<{
   [seasonNumber: number | string]: {
     players: { name: string; wins: number }[]
   }
 }> {
   const googleSheetUrl = `${sheetUrl}wins${game}`
-  const res = await fetch(googleSheetUrl, {
-    next: { revalidate: cacheLife }
-  })
+  const res = await fetch(googleSheetUrl)
   const data = await res.json()
   const formatted: {
     [seasonNumber: number | string]: {
@@ -32,7 +29,7 @@ export async function getWins(game: 'mw2' | 'mw3'): Promise<{
   return formatted
 }
 
-export async function getSeasonData(game: 'mw2' | 'mw3'): Promise<
+export async function getSeasonData(game: Game): Promise<
   {
     endDate: string
     season: number | string
@@ -45,9 +42,7 @@ export async function getSeasonData(game: 'mw2' | 'mw3'): Promise<
   }[]
 > {
   const googleSheetUrl = `${sheetUrl}seasonData${game}`
-  const res = await fetch(googleSheetUrl, {
-    next: { revalidate: cacheLife }
-  })
+  const res = await fetch(googleSheetUrl)
   const data = await res.json()
   return data
 }
@@ -56,9 +51,7 @@ export async function getPlayerData(): Promise<{
   [playerName: string]: Player
 }> {
   const googleSheetUrl = `${sheetUrl}players`
-  const res = await fetch(googleSheetUrl, {
-    next: { revalidate: cacheLife }
-  })
+  const res = await fetch(googleSheetUrl)
   const data = await res.json()
   const formatted: {
     [playerName: string]: Player
@@ -70,15 +63,13 @@ export async function getPlayerData(): Promise<{
   return formatted
 }
 
-export async function getPlayerArt(game: 'mw2' | 'mw3'): Promise<{
+export async function getPlayerArt(game: Game): Promise<{
   [playerName: string]: {
     [seasonNumber: string]: string
   }
 }> {
   const googleSheetUrl = `${sheetUrl}playerArt${game}`
-  const res = await fetch(googleSheetUrl, {
-    next: { revalidate: cacheLife }
-  })
+  const res = await fetch(googleSheetUrl)
   const data = await res.json()
   const formatted: {
     [playerName: string]: { ['season']: string }

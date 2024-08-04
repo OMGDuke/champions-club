@@ -5,6 +5,7 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import Champion from './components/champion'
 import { Player } from '../../../../types/player'
+import { Game } from '../../../../types/games'
 
 type Props = {
   wins: {
@@ -18,7 +19,7 @@ type Props = {
   players: {
     [playerName: string]: Player
   }
-  game: 'mw2' | 'mw3'
+  game: Game
 }
 
 export default function ChampOfChamps({ wins, players, game }: Props) {

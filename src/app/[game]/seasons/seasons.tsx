@@ -8,9 +8,10 @@ import {
 } from '@/actions/googleSheets'
 import SeasonsContainer from '@/app/[game]/seasons/components/seasons'
 import ChampOfChamps from './champOfChamps'
+import { Game } from '../../../../types/games'
 
 type Props = {
-  game: 'mw2' | 'mw3'
+  game: Game
 }
 
 export default async function Seasons({ game }: Props) {

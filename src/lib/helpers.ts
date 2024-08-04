@@ -1,3 +1,5 @@
+import { Game } from '../../types/games'
+
 export function getPlayersWithAWinInEverySeason(seasonsData: {
   [seasonNumber: number | string]: {
     players: { name: string; wins: number }[]
@@ -124,4 +126,8 @@ export function getHallOfFame(seasonsData: {
   }
 
   return aggregatedPlayerData
+}
+
+export const isValidGame = (value: Game) => {
+  return value === 'mw2' || value === 'mw3' || value === 'bo6'
 }

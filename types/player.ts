@@ -6,4 +6,7 @@ export type Player = {
   awardDescriptionmw3: string
   operatorSkinMw2: string
   operatorSkinMw3: string
+  awardTitlebo6: string
+  awardDescriptionbo6: string
+  operatorSkinBo6: string
 }

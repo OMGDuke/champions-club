@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
+import { Game } from '../../../../../types/games'
 
 type Props = {
   name: string
@@ -10,7 +11,7 @@ type Props = {
   title: string
   description: string
   avatar: string
-  game: 'mw2' | 'mw3'
+  game: Game
 }
 
 export default function Champion({

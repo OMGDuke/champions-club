@@ -1,22 +1,34 @@
 import { redirect } from 'next/navigation'
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Metadata } from 'next'
 
 import Seasons from '@/app/[game]/seasons/seasons'
-import Loading from '@/app/[game]/seasons/loading'
 
 import Hero from '@/components/hero'
 import Background from '@/components/background'
+import { Game as GameType } from '../../../types/games'
+import { isValidGame } from '@/lib/helpers'
 
 type Props = {
   params: {
-    game: 'mw2' | 'mw3'
+    game: GameType
   }
 }
 
+const backgrounds = {
+  mw2: '/gameart/mw2-bg.jpg',
+  mw3: '/gameart/mw3-bg.png',
+  bo6: '/gameart/bo6-bg.jpg'
+}
+
+const titles = {
+  mw2: 'Modern Warfare II',
+  mw3: 'Modern Warfare III',
+  bo6: 'Black Ops VI'
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const name =
-    params.game === 'mw2' ? 'Modern Warfare II' : 'Modern Warfare III'
+  const name = titles[params.game]
   return {
     title: `${name} | The Champions Club`,
     description: `${name} | Welcome... To the Champions Club`
@@ -24,20 +36,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Game({ params: { game } }: Props) {
-  if (game !== 'mw2' && game !== 'mw3') {
+  if (!isValidGame(game)) {
     redirect('/')
   }
 
   return (
-    <div>
-      <Background
-        img={game === 'mw2' ? '/gameart/mw2-bg.jpg' : '/gameart/mw3-bg.png'}
-      />
+    <div style={{ position: 'relative' }}>
+      <Background img={backgrounds[game]} />
       <div style={{ position: 'relative' }}>
-        <Hero></Hero>
-        <Suspense fallback={<Loading />}>
-          <Seasons game={game} />
-        </Suspense>
+        <Hero game={game} />
+        <Seasons game={game} />
       </div>
     </div>
   )

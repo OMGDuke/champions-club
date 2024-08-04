@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { Player } from '../../../../../types/player'
+import { Player as PlayerType } from '../../../../../types/player'
 
 type Props = {
-  player: Player
+  player: PlayerType
   name: string
   wins: number
   playerArt: string

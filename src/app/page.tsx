@@ -5,9 +5,11 @@ import Link from 'next/link'
 
 import mw2Box from '../../public/gameart/mw2-box.png'
 import mw3Box from '../../public/gameart/mw3-box.png'
+import bo6Box from '../../public/gameart/bo6-box.png'
 
 import champs from '../../public/images/champ-club.png'
 import Background from '@/components/background'
+import { colors } from '@/lib/consts'
 
 export default function Home() {
   return (
@@ -21,11 +23,15 @@ export default function Home() {
           </h2>
         </Heading>
         <Grid>
-          <BoxArt href="/mw2" $hover="#7ac32c">
-            <Image src={mw2Box} alt="Modern Warfare II" />
+          <BoxArt href="/bo6" $hover={colors.bo6}>
+            <Image src={bo6Box} alt="Black Ops 6" />
           </BoxArt>
-          <BoxArt href="/mw3" $hover="#d60000">
+
+          <BoxArt href="/mw3" $hover={colors.mw3}>
             <Image src={mw3Box} alt="Modern Warfare III" />
+          </BoxArt>
+          <BoxArt href="/mw2" $hover={colors.bo6}>
+            <Image src={mw2Box} alt="Modern Warfare II" />
           </BoxArt>
         </Grid>
       </Content>
@@ -49,6 +55,7 @@ const Content = styled.div`
 
 const Champ = styled(Image)`
   max-height: 100px;
+  height: auto;
   width: auto;
 `
 
