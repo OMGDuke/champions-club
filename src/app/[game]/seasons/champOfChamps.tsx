@@ -20,15 +20,23 @@ type Props = {
     [playerName: string]: Player
   }
   game: Game
+  isAwardsSeason: boolean
 }
 
-export default function ChampOfChamps({ wins, players, game }: Props) {
+export default function ChampOfChamps({
+  wins,
+  players,
+  game,
+  isAwardsSeason
+}: Props) {
   const champs = useMemo(
     () =>
-      getHallOfFame(wins).filter(
-        (champ) => players[champ.name][`awardTitle${game}`]?.length
-      ),
-    [game, players, wins]
+      isAwardsSeason
+        ? getHallOfFame(wins).filter(
+            (champ) => players[champ.name][`awardTitle${game}`]?.length
+          )
+        : [],
+    [game, isAwardsSeason, players, wins]
   )
 
   if (!champs.length)

@@ -21,6 +21,10 @@ export default async function Seasons({ game }: Props) {
     getPlayerData(),
     getPlayerArt(game)
   ])
+  const lastSeasonStart = new Date(
+    seasons.find((season) => season.season === 6)?.startDate || ''
+  )
+  const isAwardsSeason = lastSeasonStart < new Date()
 
   return (
     <>
@@ -30,7 +34,12 @@ export default async function Seasons({ game }: Props) {
         players={players}
         playerArt={playerArt}
       />
-      <ChampOfChamps wins={wins} players={players} game={game} />
+      <ChampOfChamps
+        wins={wins}
+        players={players}
+        game={game}
+        isAwardsSeason={isAwardsSeason}
+      />
     </>
   )
 }

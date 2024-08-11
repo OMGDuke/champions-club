@@ -95,23 +95,28 @@ export function getPlayersWith10PlusWins(seasonsData: {
 
 export function getHallOfFame(seasonsData: {
   [seasonNumber: number | string]: {
-    players: { name: string; wins: number }[]
+    players: { name: string; wins: number | string }[]
   }
 }): { name: string; wins: number }[] {
   const playerDataMap: { [playerName: string]: number } = {}
-
   for (const seasonKey in seasonsData) {
     const season = seasonsData[seasonKey]
     const players = season.players
 
     for (const player of players) {
       const playerName = player.name
-      const wins = player.wins
-
-      if (playerDataMap[playerName] === undefined) {
-        playerDataMap[playerName] = wins
+      let playerWins: number
+      if (typeof player.wins === 'number') {
+        playerWins = player.wins
+      } else if (typeof player.wins === 'string' && player.wins !== '') {
+        playerWins = parseInt(player.wins)
       } else {
-        playerDataMap[playerName] += wins
+        playerWins = 0
+      }
+      if (playerDataMap[playerName] === undefined) {
+        playerDataMap[playerName] = playerWins
+      } else {
+        playerDataMap[playerName] += playerWins
       }
     }
   }
